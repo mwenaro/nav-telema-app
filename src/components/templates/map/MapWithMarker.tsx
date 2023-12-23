@@ -108,7 +108,7 @@ const MyMap = ({
     <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API!}>
       <GoogleMap
         // mapContainerStyle={{ width, height }}
-        mapContainerStyle={{ width: "100vw", height: "400px" }}
+        mapContainerStyle={{ width: "100vw", height: "400px", maxWidth:'1000px', margin:'auto' }}
         zoom={zoomScale}
         // center={{ lat: -1.286389, lng: 36.817223 }}
         center={centerData?.coordinates ?? currentLocation}

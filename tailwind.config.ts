@@ -1,3 +1,12 @@
+function withOpacity(variableName:string) {
+  return ({ opacityValue }:{opacityValue:any}) => {
+    if (opacityValue !== undefined) {
+      return `rgba(var(${variableName}), ${opacityValue})`;
+    }
+    return `rgb(var(${variableName}))`;
+  };
+}
+
 import { fontFamily } from "tailwindcss/defaultTheme";
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -21,6 +30,56 @@ module.exports = {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       colors: {
+        skin: {
+          primary: withOpacity("--primary"),
+          // secondary: withOpacity("--secondary"),
+          accent: withOpacity("--accent"),
+          neutral: withOpacity("--neutral"),
+          white: withOpacity("--white"),
+        },
+        tm:{
+          dashboard :{
+            white:"#fcfcfd",
+            gray:"#E4E4E4",
+            dark:"#303644"
+
+          }
+        },
+        dashboard: {
+          primary: "#00728d",
+
+          dark: "#393a3e",
+          blue: "#0e0c28",
+          green: "#1d2939",
+          red: "#fa0101",
+          nav_item_bg: "#5184b1",
+
+          gra_end: "#3e453e",
+          gra_start: "#7ed956",
+          // gra_end:"#232b4c",
+          // gra_start: "#00718c",
+
+          btn_green: "#057884",
+          btn_green_end: "#35bd41",
+        },
+        auth: {
+          gray: "#71748d",
+          blue: "#5969ff",
+          red: "#dc3545",
+          hover_color: "#0069d9",
+          facebook_blue: "#3c73df",
+          twitter_blue: "#2caeff",
+          border_color: "#d2d2e4",
+          title_color: "#3d405c",
+        },
+        product: {
+          blue: "#2ed573",
+          gold: "#ff6348",
+        },
+        dpage: {
+          gray: "#e9e8f0",
+        },
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

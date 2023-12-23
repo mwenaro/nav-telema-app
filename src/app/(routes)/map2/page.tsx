@@ -2,7 +2,7 @@ import { MapWithMarkers, MyMap } from "@/components"
 
 
 function page() {
-  return <div className="w-full ">
+  return <div className="w-full flex ">
     <MapWithMarkers  />
     
     {/* <MyMap /> */}
