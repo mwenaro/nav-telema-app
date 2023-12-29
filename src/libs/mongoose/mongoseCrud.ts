@@ -7,7 +7,11 @@ import {
   PackageModel,
   UserModel,
   ActivationModel,
+  DriverModel,
+  StakeHolderModel,
+  TruckModel,
 } from "./models"; // Import your Mongoose models here
+
 // const { v4: uuidv4 } = require('uuid');
 
 const modelMap: any = {
@@ -18,6 +22,9 @@ const modelMap: any = {
   packages: PackageModel,
   users: UserModel,
   activation: ActivationModel,
+  drivers: DriverModel,
+  stakeholder : StakeHolderModel,
+  truck :TruckModel
 };
 
 // Create

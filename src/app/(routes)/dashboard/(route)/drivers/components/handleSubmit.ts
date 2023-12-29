@@ -1,4 +1,4 @@
-import { Driver } from "@/types/core";
+import { Driver } from "@/types/nav-tel-types";
 import { postData, updateById } from "@/utils";
 import Swal from "sweetalert2";
 

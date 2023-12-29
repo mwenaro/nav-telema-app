@@ -1,7 +1,7 @@
 "use client";
 import { DeleteButton, Img } from "@/components";
 import { useGlobalContext } from "@/context/GlobalContext";
-import { Driver } from "@/types/core";
+
 import { fetchData } from "@/utils";
 
 import { useSearchParams } from "next/navigation";
@@ -10,6 +10,7 @@ import { DriverPageWrapper } from "./ProductPageWrapper";
 import { Wrapper } from "@/components/templates/dashboard/main";
 import { FaEdit } from "react-icons/fa";
 import AddDriverModal from "./AddDriverModal";
+import { Driver } from "@/types/nav-tel-types";
 export default function DriverPage({ vendor, params }: any) {
   const [drivers, setDrivers] = useState<Driver[]>([]);
   const [selectedDriver, setSelectedDriver] = useState<Driver | null>(null);
@@ -20,8 +21,9 @@ export default function DriverPage({ vendor, params }: any) {
     (async () => {
       try {
         const fetchDrivers = await  fetchData(`/api/driver`)
+        
        
-        setDrivers(fetchDrivers);
+        setDrivers(Array.isArray(fetchDrivers) ? fetchDrivers : []);
       } catch (error: any) {
         console.log({ error: error.message });
       }
@@ -31,19 +33,19 @@ export default function DriverPage({ vendor, params }: any) {
   if (!drivers) return <div>No drivers</div>;
   return (
     <DriverPageWrapper>
-      <Wrapper shouldAddBtn={true}>
+      <Wrapper shouldAddBtn={true} addBtnLabel="Add Driver">
         {/* Headers */}
 
         <div className="w-full overflow-x-hidden grid grid-cols-6 md:grid-cols-10 border-b-2 border-solid bg-[#f9f9ff] font-bold py-3 mx-1 text-sm">
           <span className="overflow-hidden">#</span>
           <span className="overflow-hidden">Image</span>
           <span className="overflow-hidden hidden md:flex">Name</span>
-          <span className="overflow-hidden hidden md:flex ">Category</span>
+          <span className="overflow-hidden hidden md:flex ">Number</span>
           <span className="overflow-hidden col-span-2 hidden md:flex">
-            Description
+           Country
           </span>
-          <span className="overflow-hidden hidden md:flex">Unit</span>
-          <span className="overflow-hidden">Price</span>
+          <span className="overflow-hidden hidden md:flex">City</span>
+          
           <span className="overflow-hidden">Status</span>
           <span className="overflow-hidden">Edit</span>
         </div>
