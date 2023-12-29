@@ -2,7 +2,7 @@
 import { Img } from '@/components';
 import { IoPersonCircleSharp } from 'react-icons/io5';
 
-const ProfilePic = ({ imageUrl ="/images/avatar.png", size = 50 }:{imageUrl?:string|null, size?:number}) => {
+const ProfilePic = ({ imageUrl ="/images/avatar2.png", size = 50 }:{imageUrl?:string|null, size?:number}) => {
   return (
     // <div className="flex items-center justify-center w-full m-5">
       <div

@@ -12,7 +12,7 @@ export default function DashboardLayout({
   params,
 }: DashboardLayoutProps) {
   return (
-    <div className="w-full flex tm-dashbaord-bg min-h-screen h-fit px-2 py-2 relative">
+    <div className="w-full flex bg-tm-dashboard-gray min-h-screen h-fit px-2 py-2 relative">
             <DashboardNav />
             <div className="flex-1 min-h-screen px-2">
             <DashboardHeader />

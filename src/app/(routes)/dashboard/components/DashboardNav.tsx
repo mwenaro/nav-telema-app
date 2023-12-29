@@ -8,7 +8,7 @@ const myLi = (navLink: any) => (
       href={navLink.href}
       className="text-left hover:font-bold rounded-md flex gap-2 justify-center  md:justify-between"
     >
-      <span>{navLink.icon} </span>
+      <h5 title={navLink.title ?? "Dashboard"}>{navLink.icon} </h5>
       <span className="hidden sm:flex text-left">{navLink.title}</span>
     </Link>
   </li>

@@ -31,14 +31,14 @@ export default function LogoutOptionModal({ vendor }: any) {
           Home
         </Link>
         <Link
-          href={`${user.vendor ? "/" + user.vendor : ""}/dashboard/account`}
+          href={`/dashboard/account`}
           className={navItemStyles}
         >
           <FaUser className="mr-2 text-slate-500" />
           Account
         </Link>
         <Link
-          href={`${user.vendor ? "/" + user.vendor : ""}/dashboard/account`}
+          href={`/dashboard/account`}
           className={navItemStyles}
         >
           <FiSettings className="mr-2" />
