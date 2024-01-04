@@ -9,9 +9,9 @@ const HomeHeroSection: React.FC = () => {
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">Revolutionize Your Logistics with EasyTruck</h1>
         <p className="text-lg mb-8">Reliable Tracking, Precise Predictions, and Unmatched Security for Your Cargo</p>
-        <button className="bg-yellow-500 text-gray-800 px-6 py-3 rounded-full font-semibold hover:bg-yellow-400">
+        <a href="#contact-us" className="bg-yellow-500 text-gray-800 px-6 py-3 rounded-full font-semibold hover:bg-yellow-400">
           Get Started
-        </button>
+        </a>
       </div>
     </section>
   );
