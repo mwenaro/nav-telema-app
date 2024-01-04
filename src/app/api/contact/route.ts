@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   const body = await request.json();
 
   try {
-    let { email, name, subject } = body;
+    let { email, name } = body;
     // return NextResponse.json(body);
     const htmlBody = `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
 <h2>Thank You for Contacting Us</h2>
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
 <p>If your matter requires immediate attention, please feel free to call us at +254 7xx-xxx-xxx. Otherwise, please be assured that we are working diligently to provide you with a thoughtful and comprehensive response.</p>
 
-<p>Once again, thank you for choosing EasyTruck. We value your interest and look forward to assisting you.</p>
+<p>Once again, thank you for choosing <em>EasyTruck</em>. We value your interest and look forward to assisting you.</p>
 
 <p>Best regards,<br>
 <br>

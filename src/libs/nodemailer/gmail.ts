@@ -18,7 +18,7 @@ export const sendTestEmail: Mailer = async (
   const transporter = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
-    
+
     port: 587,
     secure: false,
     auth: {
@@ -37,7 +37,7 @@ export const sendTestEmail: Mailer = async (
   } = {
     // from: process.env.NEXT_PUBLIC_EMAIL_USER as string,
     // from: sender? sender: "Mombasa DigitalSolutions<mweroabdalla@gmail.com>",
-    from: sender ? sender : "Odasasa <info@splendidmedia.co.ke>",
+    from: "EasyTruck <info@easytruck.com>",
     to,
     subject: subject || "Test Email",
     text: body || "Test email text",
