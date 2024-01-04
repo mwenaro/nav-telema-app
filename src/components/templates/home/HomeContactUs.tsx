@@ -37,9 +37,9 @@ const HomeContactUs: React.FC = () => {
           {/* Contact Information */}
           <div className="bg-white p-6 rounded-md shadow-md">
             <h3 className="text-xl font-bold mb-4">Reach Us</h3>
-            <p className="text-gray-600 mb-2">123 EasyTruck Way</p>
-            <p className="text-gray-600 mb-2">Cityville, USA</p>
-            <p className="text-gray-600 mb-2">Phone: +1 (123) 456-7890</p>
+            <p className="text-gray-600 mb-2"> EasyTruck Way</p>
+            <p className="text-gray-600 mb-2">CBD, Mombasa, Kenya</p>
+            <p className="text-gray-600 mb-2">Phone: +254 7xx -xxx -xxx</p>
             <p className="text-gray-600 mb-2">Email: info@easytruck.com</p>
 
             {/* Social Icons */}

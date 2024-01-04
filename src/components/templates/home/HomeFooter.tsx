@@ -1,7 +1,7 @@
 // HomeFooter.tsx
 
-import React from 'react';
-import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
+import React from "react";
+import { FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 const HomeFooter: React.FC = () => {
   return (
@@ -12,10 +12,18 @@ const HomeFooter: React.FC = () => {
           <div>
             <h3 className="text-xl font-bold mb-2">Quick Links</h3>
             <ul className="list-none p-0 m-0">
-              <li className="mb-1"><a href="#">Home</a></li>
-              <li className="mb-1"><a href="#">About Us</a></li>
-              <li className="mb-1"><a href="#">Services</a></li>
-              <li className="mb-1"><a href="#">Contact</a></li>
+              <li className="mb-1">
+                <a href="#">Home</a>
+              </li>
+              <li className="mb-1">
+                <a href="#">About Us</a>
+              </li>
+              <li className="mb-1">
+                <a href="#">Services</a>
+              </li>
+              <li className="mb-1">
+                <a href="#">Contact</a>
+              </li>
               {/* Add more links as needed */}
             </ul>
           </div>
@@ -41,10 +49,10 @@ const HomeFooter: React.FC = () => {
         {/* Contact Details */}
         <div className="mb-4">
           <h3 className="text-xl font-bold mb-2">Contact Us</h3>
-          <p className="text-gray-500 mb-1">123 EasyTruck Way</p>
-          <p className="text-gray-500 mb-1">Cityville, USA</p>
-          <p className="text-gray-500 mb-1">Phone: +1 (123) 456-7890</p>
-          <p className="text-gray-500">Email: info@easytruck.com</p>
+          <p className="text-gray-600 mb-2"> EasyTruck Way</p>
+          <p className="text-gray-600 mb-2">CBD, Mombasa, Kenya</p>
+          <p className="text-gray-600 mb-2">Phone: +254 7xx -xxx -xxx</p>
+          <p className="text-gray-600 mb-2">Email: info@easytruck.com</p>
         </div>
 
         {/* Copyright Section */}

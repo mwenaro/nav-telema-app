@@ -18,7 +18,7 @@ const Home: React.FC = () => {
       <HomeAboutUs />
       <HomeWhyUs />
       <HomeTestimonials />
-      {/* <HomeContactUs /> */}
+      <HomeContactUs />
       <HomeFooter />
     </div>
   );
