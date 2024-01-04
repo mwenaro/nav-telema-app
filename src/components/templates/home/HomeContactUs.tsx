@@ -3,6 +3,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const HomeContactUs: React.FC = () => {
   const validationSchema = Yup.object().shape({
@@ -11,17 +12,33 @@ const HomeContactUs: React.FC = () => {
     message: Yup.string().required("Message is required"),
   });
 
-  const handleSubmit = (values: {
+  const handleSubmit = async (values: {
     name: string;
     email: string;
     message: string;
   }) => {
-    // Handle form submission
-    console.log(values);
+    try {
+      const res = await (
+        await fetch("/api/contact", {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: { "Content-Type": "application/json" },
+        })
+      ).json();
+      if (!res.success) throw new Error("Something Went Wrong, try again");
+      console.log(res);
+      Swal.fire("Success", "Form sucesfully submited");
+    } catch (error: any) {
+      console.log({ msg: error.message });
+      Swal.fire("Error", error.message);
+    }
   };
 
   return (
-    <div className="flex flex-col  items-center justify-center p-4 mb-20" id="contact-us">
+    <div
+      className="flex flex-col  items-center justify-center p-4 mb-20"
+      id="contact-us"
+    >
       <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
       <div className="w-full flex flex-col md:flex-row-reverse items-center justify-around gap-2 md:gap-12">
         <Formik
