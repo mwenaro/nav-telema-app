@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 const htmlBody = `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
 <h2>Thank You for Contacting Us</h2>
 
-<h3 style="text-transform:capitalize;">Dear ${name},</h3>
+<h5 style="text-transform:capitalize;">Dear ${name},</h5>
 
 <p>Thank you for reaching out to us! We have received your message and appreciate the time you took to contact us. Our team is currently reviewing your inquiry, and we will get back to you as soon as possible.</p>
 
