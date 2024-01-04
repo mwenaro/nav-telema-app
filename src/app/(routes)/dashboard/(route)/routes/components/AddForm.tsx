@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Input } from "@/components";
 import AddButton from "@/components/templates/dashboard/AddButton";
 
-import { companyFormFields } from "@/libs/mongoose/models/company";
+import { routeFormFields } from "@/libs/mongoose/models/route";
 
-export default function AddCompanyForm({idealNumFields = 8}) {
+export default function AddRouteForm({idealNumFields = 8}) {
   const [showImagePrev, setShowImagePrev] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const formFields = companyFormFields; // Assuming companyFormFields is an array of form fields.
+  const formFields = routeFormFields; // Assuming routeFormFields is an array of form fields.
 
   // Calculate the number of steps needed based on the form fields.
   const numSteps = Math.ceil(formFields.length / idealNumFields);
@@ -56,7 +56,7 @@ export default function AddCompanyForm({idealNumFields = 8}) {
         ))}
         {stepIndex === numSteps - 1 && (
           <AddButton
-            label={`Add Company`}
+            label={`Add Route`}
             // label={`Add Driver - Step ${stepIndex + 1}`}
             className="my-6 mx-12"
             type="submit"

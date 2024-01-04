@@ -11,7 +11,8 @@ import {
   StakeHolderModel,
   TruckModel,
   CompanyModel,
-  TownModel
+  TownModel,
+  RouteModel,
 } from "./models"; // Import your Mongoose models here
 
 // const { v4: uuidv4 } = require('uuid');
@@ -25,10 +26,11 @@ const modelMap: any = {
   users: UserModel,
   activation: ActivationModel,
   drivers: DriverModel,
-  stakeholder : StakeHolderModel,
-  truck :TruckModel,
+  stakeholder: StakeHolderModel,
+  truck: TruckModel,
   company: CompanyModel,
-  towns: TownModel
+  towns: TownModel,
+  routes: RouteModel,
 };
 
 // Create

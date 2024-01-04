@@ -54,4 +54,4 @@ const townFormFields = [
 const TownModel: Model<Town> =
   mongoose.models?.Town || mongoose.model<Town>("Town", townSchema);
 
-export { townSchemaValidation, TownModel, townFormFields,  initialTownValues };
+export { townSchemaValidation, TownModel, townFormFields,  initialTownValues}

@@ -1,17 +1,16 @@
 "use client";
-import * as Yup from "yup";
 
 import Modal from "@/components/molecules/Modal";
 import { UniversalFormikForm } from "@/components/templates/form";
 import { useGlobalContext } from "@/context/GlobalContext";
-import AddCompanyForm from "./AddForm";
+import AddRouteForm from "./AddForm";
 
 import LocalStorageManager from "@/utils/localStorage";
 import { useRouter } from "next/navigation";
-import { postCompany, updateCompany } from "./handleSubmit";
-import { companySchemaValidation } from "@/libs/mongoose/models/company";
+import { postRoute, updateRoute } from "./handleSubmit";
+import { routeSchemaValidation } from "@/libs/mongoose/models/route";
 
-export default function AddCompanyModal({ selectedCompany, companys }: any) {
+export default function AddRouteModal({ selectedRoute, routes }: any) {
   const router = useRouter();
   const { data: globalData, setData } = useGlobalContext(),
     { isModalOpen } = globalData;
@@ -25,12 +24,12 @@ export default function AddCompanyModal({ selectedCompany, companys }: any) {
     >
       <UniversalFormikForm
         handleSubmit={(values, { resetForm }) => {
-          !selectedCompany
-            ? postCompany({ ...values }, () => {
+          !selectedRoute
+            ? postRoute({ ...values }, () => {
                 resetForm();
                 router.refresh();
               })
-            : updateCompany(values, () => {
+            : updateRoute(values, () => {
                 resetForm();
                 setData({
                   ...globalData,
@@ -41,8 +40,8 @@ export default function AddCompanyModal({ selectedCompany, companys }: any) {
           router.refresh();
         }}
         initialValues={
-          selectedCompany ?? {
-            companyName: '',
+          selectedRoute ?? {
+            routeName: '',
             shortName: '',
             userName: '',
             application: '',
@@ -60,13 +59,13 @@ export default function AddCompanyModal({ selectedCompany, companys }: any) {
             createdDate: null,
           }
         }
-        validationSchema={companySchemaValidation}
+        validationSchema={routeSchemaValidation}
       >
-        {!selectedCompany ? (
-          <AddCompanyForm />
+        {!selectedRoute ? (
+          <AddRouteForm />
         ) : (
-          // <EditCompanyForm handleSubmit={() => console.log("")}  />
-          <AddCompanyForm />
+          // <EditRouteForm handleSubmit={() => console.log("")}  />
+          <AddRouteForm />
         )}
       </UniversalFormikForm>
     </Modal>

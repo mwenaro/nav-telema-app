@@ -1,6 +1,6 @@
-import DashboardCompanies from "./components/Companies";
+import DashboardRoutes from "./components/Routes";
 
-export default async function DriversPage() {
-  return <DashboardCompanies />;
+export default async function RoutesPage() {
+  return <DashboardRoutes />;
 
 }
