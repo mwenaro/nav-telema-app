@@ -1,7 +1,6 @@
-import React from 'react'
+import DashboardTowns from "./components/Towns";
 
-export default function TownsPage() {
-  return (
-    <div>TownsPage</div>
-  )
+export default async function TownsPage() {
+  return <DashboardTowns />;
+
 }

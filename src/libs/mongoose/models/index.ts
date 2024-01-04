@@ -11,3 +11,4 @@ export { StakeHolderModel as StakeHolderModel } from "./stakeholder";
 export { TruckModel as TruckModel } from "./truck";
 export { DriverModel as DriverModel } from "./driver";
 export { CompanyModel as CompanyModel } from "./company";
+export { TownModel as TownModel } from "./town";
