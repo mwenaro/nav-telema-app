@@ -30,7 +30,7 @@ export const sendTestEmail: Mailer = async (
   // Define the email message
   const message: {
     from: any;
-    to: string;
+    to: string | string[];
     subject: string;
     text?: string;
     html?: string;
@@ -38,7 +38,7 @@ export const sendTestEmail: Mailer = async (
     // from: process.env.NEXT_PUBLIC_EMAIL_USER as string,
     // from: sender? sender: "Mombasa DigitalSolutions<mweroabdalla@gmail.com>",
     from: "EasyTruck <info@easytruck.com>",
-    to,
+    to: Array.isArray(to) ? to.join(", ") : to,
     subject: subject || "Test Email",
     text: body || "Test email text",
   };
