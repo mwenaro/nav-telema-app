@@ -26,7 +26,7 @@ export async function POST(request: Request) {
   try {
     let { email, name } = body;
     // return NextResponse.json(body);
-    const htmlBody = `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+const htmlBody = `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
 <h2>Thank You for Contacting Us</h2>
 
 <h3 style="text-transform:capitalize;">Dear ${name},</h3>
