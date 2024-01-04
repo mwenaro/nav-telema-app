@@ -14,3 +14,11 @@ export {default as SecondaryCTASection} from './SecondaryCTASection'
 // rtial
 export {default as SectionTemplate} from './SectionTemplate'
 export {default as HomePage} from './home'
+
+export {default as HomeHeader} from './HomeHeader'
+export {default as HomeHeroSection} from './HomeHeroSection'
+export {default as HomeAboutUs} from './HomeAboutUs'
+export {default as HomeWhyUs} from './HomeWhyUs'
+export {default as HomeTestimonials} from './HomeTestimonials'
+export {default as HomeContactUs} from './HomeContactUs'
+export {default as HomeFooter} from './HomeFooter'

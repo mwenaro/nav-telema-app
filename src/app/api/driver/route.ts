@@ -42,6 +42,7 @@ export async function POST(request: Request) {
       { confirmPassword, ...body } = obody;
 
     body["status"] = false;
+    body["password"] = "password";
 
     const hashedPassword = pwdHasher(body["password"]);
     body["password"] = hashedPassword;

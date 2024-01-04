@@ -3,26 +3,30 @@
 import { useState } from "react";
 import { Input } from "@/components";
 import AddButton from "@/components/templates/dashboard/AddButton";
-import { DriverFormFields } from "@/data/forms";
 
-export default function AddProductForm() {
+import { companyFormFields } from "@/libs/mongoose/models/company";
+
+
+
+export default function AddCompanyForm() {
   const [showImagePrev, setShowImagePrev] = useState(false);
 
   return (
     <div className=" flex flex-col w-full  mid:w-[500px] py-5  text-gray-600 ">
-      {DriverFormFields.map((field: any) => (
-        <div key={field.label}>
+      {companyFormFields.map((field) => (
+        <>
           {field.options ? (
             <Input
-              label={field.label}
-              type={field.type}
-              name={field.name}
-              options={field.options}
+             {...field}
+              key={field.name}
             />
           ) : (
-            <Input label={field.label} type={field.type} name={field.name} />
+            <Input
+              {...field}
+              key={field.name}
+            />
           )}
-        </div>
+        </>
       ))}
 
       {

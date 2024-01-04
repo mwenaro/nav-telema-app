@@ -9,30 +9,34 @@ import { useState, useEffect } from "react";
 
 import { Wrapper } from "@/components/templates/dashboard/main";
 import { FaEdit } from "react-icons/fa";
-import AddDriverModal from "./AddDriverModal";
-import { Driver } from "@/types/nav-tel-types";
-export default function DriverPage({ vendor, params }: any) {
-  const [drivers, setDrivers] = useState<Driver[]>([]);
-  const [selectedDriver, setSelectedDriver] = useState<Driver | null>(null);
+import AddCompanyModal from "./AddFormModal";
+import { Company } from "@/libs/mongoose/models/company";
+import { useFetch } from "@/hooks";
+
+export default function DashboardCompanies({ vendor, params }: any) {
+  // const [companys, setCompanys] = useState<Company[]>([]);
+  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const { data: globalData, setData } = useGlobalContext();
+  const {data:companys, error}  = useFetch('/api/company')
   const searchParams = useSearchParams();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const fetchDrivers = await fetchData(`/api/driver`);
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const fetchCompanys = await fetchData(`/api/company`);
 
-        setDrivers(Array.isArray(fetchDrivers) ? fetchDrivers : []);
-      } catch (error: any) {
-        console.log({ error: error.message });
-      }
-    })();
-  });
+  //       setCompanys(Array.isArray(fetchCompanys) ? fetchCompanys : []);
+  //     } catch (error: any) {
+  //       console.log({ error: error.message });
+  //     }
+  //   })();
+  // });
 
-  if (!drivers) return <div>No drivers</div>;
+  if (!Array.isArray(companys) || companys?.length <=0) return <div>No companys</div>;
+
   return (
     <PageHOC>
-      <Wrapper shouldAddBtn={true} addBtnLabel="Add Driver">
+      <Wrapper shouldAddBtn={true} addBtnLabel="Add Company">
         {/* Headers */}
 
         <div className="w-full overflow-x-hidden grid grid-cols-6 md:grid-cols-10 border-b-2 border-solid bg-[#f9f9ff] font-bold py-3 mx-1 text-sm">
@@ -49,21 +53,17 @@ export default function DriverPage({ vendor, params }: any) {
           <span className="overflow-hidden">Edit</span>
         </div>
 
-        {drivers.map((p: Driver, indx: number) => (
+        {companys.map((p: Company, indx: number) => (
           <div
             key={`${p._id}-${indx}`}
             className="w-full overflow-x-hidden grid  grid-cols-6 md:grid-cols-10  border-b-2 border-solid hover:bg-[#f9f9ff] py-3 mx-1 text-sm place-content-center"
           >
             <span className="overflow-hidden">{indx + 1}</span>
             <span className="overflow-hidden "></span>
-            <span className="overflow-hidden ">
-              {p.firstName} - {p.lastName}
-            </span>
-            <span className="overflow-hidden hidden md:flex">
-              {p.contactNumber}
-            </span>
+            <span className="overflow-hidden ">{p.companyName}</span>
+            <span className="overflow-hidden hidden md:flex">{p.email}</span>
             <span className="overflow-hidden col-span-2 text-clip hidden md:flex">
-              {p.state}
+              {p.country}
             </span>
             <span className="overflow-hidden hidden md:flex">{p.city}</span>
 
@@ -81,7 +81,7 @@ export default function DriverPage({ vendor, params }: any) {
             <div className="flex justify-between items-center ">
               <button
                 onClick={() => {
-                  setSelectedDriver(p);
+                  setSelectedCompany(p);
                   setData({
                     ...globalData,
                     isModalOpen: !globalData.isModalOpen,
@@ -93,11 +93,11 @@ export default function DriverPage({ vendor, params }: any) {
                 <FaEdit className="text-lg text-orange-400" />
               </button>
 
-              <DeleteButton id={p._id!} table="driver" />
+              <DeleteButton id={p._id!} table="company" />
             </div>
           </div>
         ))}
-        <AddDriverModal selectedDriver={selectedDriver} />
+        <AddCompanyModal selectedCompany={selectedCompany} />
       </Wrapper>
     </PageHOC>
   );

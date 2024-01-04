@@ -14,8 +14,8 @@ const driverSchema: Schema<Driver> = new Schema(
     defaultObjectNo: { type: String },
     password: {
       type: String,
-      required: true
-    
+      required: true,
+      select: false
     },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }

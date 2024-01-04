@@ -5,31 +5,30 @@ interface AddButtonProps {
   className?: string;
   children?: React.ReactNode;
   label?: string;
-  type?: "button" | "reset" | "submit";
+  type?:"button" | "reset" | "submit";
   labelClasses?: string;
   iconClasses?: string;
   onClick?: () => void;
 }
 
 const AddButton = ({
-  label = "",
+  label="",
   className = "",
-  type = "button",
+  type ="button",
   onClick = () => "",
 }: AddButtonProps) => {
+
   return (
     <button
-      type={type}
+    type={type}
       className={twMerge(
         `flex px-6 my-2  justify-center items-center
-      py-3 rounded-full bg-gradient-to-r from-yellow-400 to-purple-800
-           hover:from-purple-800 hover:to-yellow-400
+      py-3 rounded-full bg-gradient-to-r from-dashboard-btn_green to-dashboard-btn_green_end
+           hover:from-dashboard-btn_green_end hover:to-dashboard-btn_green
                 text-white font-bold text-lg`,
         className
       )}
-      onClick={() => {
-        onClick();
-      }}
+      onClick={() => {onClick()}}
     >
       +{" " + label}
     </button>

@@ -48,8 +48,16 @@ export type GlobalData = {
   order: Order;
   shopDetails: User | null;
   isModalOpen: boolean;
-  cartFuncs:any;
+  cartFuncs: any;
   uploadedImgPath?: string;
   handleLogout: () => void;
 };
 
+export type FormField = {
+  name: string;
+  label: string;
+  type: string;
+  labeled?: boolean;
+
+  options?: string[];
+};

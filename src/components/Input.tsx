@@ -35,7 +35,7 @@ const Input: React.FC<InputFieldProps> = ({
 
   return (
     <div className="mb-1 flex flex-col px-3  w-full relative">
-      {labeled && !["checkbox"].includes(type) && (
+      {(labeled || type.includes('date') ) && !["checkbox"].includes(type) && (
         <label
           htmlFor={name}
           className={twMerge("block text-md font-bold ", labelClasses)}

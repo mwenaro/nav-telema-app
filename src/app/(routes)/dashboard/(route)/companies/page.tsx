@@ -1,7 +1,6 @@
-import React from 'react'
+import DashboardCompanies from "./components/Companies";
 
-export default function CompaniesPage() {
-  return (
-    <div></div>
-  )
+export default async function DriversPage() {
+  return <DashboardCompanies />;
+
 }

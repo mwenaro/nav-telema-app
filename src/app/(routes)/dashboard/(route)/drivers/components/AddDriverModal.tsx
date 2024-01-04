@@ -10,7 +10,7 @@ import LocalStorageManager from "@/utils/localStorage";
 import { useRouter } from "next/navigation";
 
 
-export default function AddDriverModal({ selectedDriver, categories }: any) {
+export default function AddDriverModal({ selectedDriver, drivers }: any) {
   const router = useRouter();
   const { data: globalData, setData } = useGlobalContext(),
     { isModalOpen } = globalData;
@@ -48,7 +48,7 @@ export default function AddDriverModal({ selectedDriver, categories }: any) {
             city: '',
             contactNumber: '',
             defaultObjectNo: '',
-            password: '',
+            // password: '',
           }
         }
         validationSchema={Yup.object().shape({
@@ -59,10 +59,10 @@ export default function AddDriverModal({ selectedDriver, categories }: any) {
           city: Yup.string(),
           contactNumber: Yup.string().required('Contact Number is required'),
           defaultObjectNo: Yup.string(),
-          password: Yup.string()
-            .min(3, 'Password must be at least 3 characters')
-            .max(20, 'Password must not exceed 20 characters')
-            .required('Password is required'),
+          // password: Yup.string()
+          //   .min(3, 'Password must be at least 3 characters')
+          //   .max(20, 'Password must not exceed 20 characters')
+          //   .required('Password is required'),
         })}
       >
         {!selectedDriver ? (

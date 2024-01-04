@@ -8,5 +8,5 @@ export const DriverFormFields = [
     { name: 'city', label: 'City', type: 'select', options : EAST_AFRICAN_TOWNS.map(c=>c.town) },
     { name: 'contactNumber', label: 'Contact Number', type: 'text' },
     { name: 'defaultObjectNo', label: 'Default Object No', type: 'text' },
-    { name: 'password', label: 'Password', type: 'password' },
+    // { name: 'password', label: 'Password', type: 'password' },
   ];

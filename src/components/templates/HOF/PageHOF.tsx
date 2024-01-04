@@ -8,13 +8,13 @@ import React, {
   ReactElement,
 } from "react";
 
-interface DriverPageWrapperProps {
+interface PageHOCProps {
   children: ReactNode;
 }
 
-export const DriverPageWrapper: React.FC<DriverPageWrapperProps> = ({
+export const PageHOC: React.FC<PageHOCProps> = ({
   children,
-}: DriverPageWrapperProps) => {
+}: PageHOCProps) => {
   const { data: globalData, setData: setGlobalData } = useGlobalContext();
 
   return (
