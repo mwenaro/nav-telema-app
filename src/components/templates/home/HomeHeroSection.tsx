@@ -1,11 +1,9 @@
 // HomeHeroSection.tsx
 
-import React from 'react';
-
 const HomeHeroSection: React.FC = () => {
   return (
     <section
-      className="bg-cover bg-center h-screen flex items-center justify-center text-white w-full"
+      className="bg-cover bg-center h-screen flex items-center justify-center text-white w-full mb-12"
       style={{ backgroundImage: 'url("/images/easy-about.webp")' }}
     >
       <div className="text-center">

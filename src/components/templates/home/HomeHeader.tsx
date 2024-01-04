@@ -7,7 +7,7 @@ import { FaTruck } from 'react-icons/fa';
 
 const HomeHeader: React.FC = () => {
   return (
-    <header className="bg-gray-800 text-white p-4 w-full">
+    <header className="bg-gray-800 text-white p-4 w-full ">
       <div className="flex items-center justify-between">
         <Link href="/" className="text-2xl font-bold flex items-center">
           <FaTruck className="inline-block mr-2" />

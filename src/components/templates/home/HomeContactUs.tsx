@@ -24,7 +24,7 @@ const HomeContactUs: React.FC = () => {
   };
 
   return (
-    <section className="w-full p-4 bg-gray-100">
+    <section className="w-full p-4 bg-gray-100 mb-20">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
 

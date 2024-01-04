@@ -4,7 +4,7 @@ import React from "react";
 
 const HomeAboutUs: React.FC = () => {
   return (
-    <section className="p-4 w-full">
+    <section className="p-4 w-full mb-20">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-3xl font-bold mb-4">Who We Are</h2>
 

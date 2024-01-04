@@ -8,7 +8,9 @@ import {
   HomeTestimonials,
   HomeContactUs,
   HomeFooter,
+  HomeOurPartners,
 } from ".";
+
 
 const Home: React.FC = () => {
   return (
@@ -19,6 +21,7 @@ const Home: React.FC = () => {
       <HomeWhyUs />
       <HomeTestimonials />
       <HomeContactUs />
+      {/* <HomeOurPartners /> */}
       <HomeFooter />
     </div>
   );
