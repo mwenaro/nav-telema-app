@@ -12,7 +12,7 @@ import { MdBarChart, MdDashboard } from "react-icons/md";
 import { columnsDataCheck, columnsDataComplex } from "./variables/columnsData";
 
 import CheckTable from "./components/CheckTable";
-import ComplexTable from "./components/ComplexTable";
+// import ComplexTable from "./components/ComplexTable";
 import DailyTraffic from "./components/DailyTraffic";
 import TaskCard from "./components/TaskCard";
 import tableDataCheck from "./variables/tableDataCheck.json";
