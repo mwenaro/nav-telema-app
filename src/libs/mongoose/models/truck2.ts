@@ -69,7 +69,7 @@ const companySchema = new Schema<Company>(
 // Mongoose Model
 
 const CompanyModel: Model<Company> =
-  mongoose.models.Company || mongoose.model<Company>("Company", companySchema);
+  mongoose.models?.Company || mongoose.model<Company>("Company", companySchema);
 
 // Array of objects for form fields
 const companyFormFields = [

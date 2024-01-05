@@ -108,7 +108,7 @@ const initialTruckValues: Truck = {
 };
 
 const TruckModel: Model<Truck> =
-  mongoose.models.Truck || mongoose.model<Truck>('Truck', truckSchema);
+  mongoose.models?.Truck || mongoose.model<Truck>('Truck', truckSchema);
 
 export {
   truckSchemaValidation,

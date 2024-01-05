@@ -12,5 +12,5 @@ const categorySchema = new mongoose.Schema<Category>(
 );
 
 export const CategoryModel =
-  mongoose.models.Category ||
+  mongoose.models?.Category ||
   mongoose.model<Category>("Category", categorySchema);

@@ -3,26 +3,27 @@ import { DeleteButton, Img, PageHOC } from "@/components";
 import { useGlobalContext } from "@/context/GlobalContext";
 
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { Wrapper } from "@/components/templates/dashboard/main";
 import { FaEdit } from "react-icons/fa";
-import AddTownModal from "./AddFormModal";
-import { Town } from "@/libs/mongoose/models/town";
+import AddCheckpointModal from "./AddFormModal";
+import { Checkpoint } from "@/libs/mongoose/models/checkpoint";
 import { useFetch } from "@/hooks";
 
-export default function DashboardTowns({ vendor, params }: any) {
-  // const [towns, setTowns] = useState<Town[]>([]);
-  const [selectedTown, setSelectedTown] = useState<Town | null>(null);
+export default function DashboardCheckpoints({ vendor, params }: any) {
+  // const [checkpoints, setCheckpoints] = useState<Checkpoint[]>([]);
+  const [selectedCheckpoint, setSelectedCheckpoint] =
+    useState<Checkpoint | null>(null);
   const { data: globalData, setData } = useGlobalContext();
-  let { data: towns, error } = useFetch("/api/town");
+  let { data: checkpoints, error } = useFetch("/api/checkpoint");
   const searchParams = useSearchParams();
 
-  if (!Array.isArray(towns)) towns = [];
+  if (!Array.isArray(checkpoints)) checkpoints = [];
 
   return (
     <PageHOC>
-      <Wrapper shouldAddBtn={true} addBtnLabel="Add Town">
+      <Wrapper shouldAddBtn={true} addBtnLabel="Add Checkpoint">
         {/* Headers */}
 
         <div className="w-full overflow-x-hidden grid grid-cols-6 md:grid-cols-10 border-b-2 border-solid bg-[#f9f9ff] font-bold py-3 mx-1 text-sm">
@@ -39,7 +40,7 @@ export default function DashboardTowns({ vendor, params }: any) {
           <span className="overflow-hidden">Edit</span>
         </div>
 
-        {towns.map((p: Town, indx: number) => (
+        {checkpoints.map((p: Checkpoint, indx: number) => (
           <div
             key={`${p._id}-${indx}`}
             className="w-full overflow-x-hidden grid  grid-cols-6 md:grid-cols-10  border-b-2 border-solid hover:bg-[#f9f9ff] py-3 mx-1 text-sm place-content-center"
@@ -47,11 +48,9 @@ export default function DashboardTowns({ vendor, params }: any) {
             <span className="overflow-hidden">{indx + 1}</span>
             <span className="overflow-hidden "></span>
             <span className="overflow-hidden ">{p.name}</span>
-            <span className="overflow-hidden hidden md:flex">
-              {p.shortName}
-            </span>
+            <span className="overflow-hidden hidden md:flex">{}</span>
             <span className="overflow-hidden col-span-2 text-clip hidden md:flex">
-              {p.country}
+              {}
             </span>
             <span className="overflow-hidden hidden md:flex">{}</span>
 
@@ -63,7 +62,7 @@ export default function DashboardTowns({ vendor, params }: any) {
             <div className="flex justify-between items-center ">
               <button
                 onClick={() => {
-                  setSelectedTown(p);
+                  setSelectedCheckpoint(p);
                   setData({
                     ...globalData,
                     isModalOpen: !globalData.isModalOpen,
@@ -75,11 +74,11 @@ export default function DashboardTowns({ vendor, params }: any) {
                 <FaEdit className="text-lg text-orange-400" />
               </button>
 
-              <DeleteButton id={p._id!} table="town" />
+              <DeleteButton id={p._id!} table="checkpoint" />
             </div>
           </div>
         ))}
-        <AddTownModal selectedTown={selectedTown} />
+        <AddCheckpointModal selectedCheckpoint={selectedCheckpoint} />
       </Wrapper>
     </PageHOC>
   );

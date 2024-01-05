@@ -15,4 +15,4 @@ const packageSchema = new mongoose.Schema<Package>({
   },{ timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
   
 
-export const PackageModel = mongoose.models.Package ||  mongoose.model<Package>('Package', packageSchema);
+export const PackageModel = mongoose.models?.Package ||  mongoose.model<Package>('Package', packageSchema);

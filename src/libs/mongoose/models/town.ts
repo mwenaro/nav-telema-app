@@ -26,8 +26,8 @@ const townSchema = new Schema<Town>(
     name: { type: String, required: true },
     shortName: { type: String, required: true },
     country: { type: String, required: true },
-    latitude: { type: Number, required: true },
-    longitude: { type: Number, required: true },
+    latitude: { type: Number, default: 0 },
+    longitude: { type: Number, default: 0 },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );

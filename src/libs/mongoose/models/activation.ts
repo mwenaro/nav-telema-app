@@ -33,5 +33,5 @@ const activationSchema = new mongoose.Schema<Activation>(
 );
 
 export const ActivationModel =
-  mongoose.models.Activation ||
+  mongoose.models?.Activation ||
   mongoose.model<Activation>("Activation", activationSchema);

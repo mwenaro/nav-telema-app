@@ -19,4 +19,4 @@ const bannerSchema = new mongoose.Schema<Banner>(
 );
 
 export const BannerModel =
-  mongoose.models.Banner || mongoose.model<Banner>("Banner", bannerSchema);
+  mongoose.models?.Banner || mongoose.model<Banner>("Banner", bannerSchema);

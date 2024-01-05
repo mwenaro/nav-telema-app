@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Input } from "@/components";
 import AddButton from "@/components/templates/dashboard/AddButton";
 
-import { truckFormFields } from "@/libs/mongoose/models/truck";
+import { townFormFields } from "@/libs/mongoose/models/town";
 
-export default function AddTruckForm({idealNumFields = 8}) {
+export default function AddTownForm({idealNumFields = 8}) {
   const [showImagePrev, setShowImagePrev] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const formFields = truckFormFields; // Assuming truckFormFields is an array of form fields.
+  const formFields = townFormFields; // Assuming townFormFields is an array of form fields.
 
   // Calculate the number of steps needed based on the form fields.
   const numSteps = Math.ceil(formFields.length / idealNumFields);
@@ -56,7 +56,7 @@ export default function AddTruckForm({idealNumFields = 8}) {
         ))}
         {stepIndex === numSteps - 1 && (
           <AddButton
-            label={`Add Truck`}
+            label={`Add Town`}
             // label={`Add Driver - Step ${stepIndex + 1}`}
             className="my-6 mx-12"
             type="submit"

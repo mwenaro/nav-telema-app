@@ -1,6 +1,6 @@
-import DashboardCompanies from "./components/Trucks";
+import DashboardTruck from "./components/Trucks";
 
 export default async function DriversPage() {
-  return <DashboardCompanies />;
+  return <DashboardTruck />;
 
 }

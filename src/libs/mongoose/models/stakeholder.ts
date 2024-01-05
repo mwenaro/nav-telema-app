@@ -71,6 +71,6 @@ const stakeHolderSchema = new Schema<StakeHolder>(
 
 // Mongoose Model
 const StakeHolderModel: Model<StakeHolder> =
-  mongoose.models.StakeHolder || model("StakeHolder", stakeHolderSchema);
+  mongoose.models?.StakeHolder || model("StakeHolder", stakeHolderSchema);
 
 export { stakeHolderSchemaValidation, StakeHolderModel };

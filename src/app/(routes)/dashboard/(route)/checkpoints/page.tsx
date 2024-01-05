@@ -1,7 +1,6 @@
-import React from 'react'
+import DashboardCheckpoints from "./components/Checkpoints";
 
-export default function Checkpoints() {
-  return (
-    <div>Checkpoints</div>
-  )
+export default async function CheckpointsPage() {
+  return <DashboardCheckpoints />;
+
 }

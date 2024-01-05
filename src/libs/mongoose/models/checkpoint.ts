@@ -1,79 +1,115 @@
 import * as yup from "yup";
-import { Document, Schema, model, Model } from "mongoose";
+import mongoose, { Model, Schema } from "mongoose";
+import { TownModel } from "./town"; // Import the TownModel
 
-export interface CheckPoint {
+export type Checkpoint = {
   _id?: string;
-  geofenceType: string;
+  type: string;
+  town: string | any; // Use the ID of the Town as a reference
   name: string;
   category: string;
-  cordinates: { latitude: number; longitude: number }[];
+  geofenceCoordinates?: string;
+  latitude: number;
+  longitude: number;
   description: string;
   tolerance: number;
   radius: number;
-  geofenceTypeValue: string; // To store whether it's a Polygon or Circle
+  geofenceType: string;
   contactNo: string;
   address: string;
-}
-
-const checkpointFormFields = [
-  { type: "text", label: "Geofence Type*", name: "geofenceType" },
-  { type: "text", label: "Name*", name: "name" },
-  { type: "text", label: "Category", name: "category" },
-  { type: "text", label: "Latitude value", name: "latitude" },
-  { type: "text", label: "Logitude Value", name: "longitude" },
-  { type: "text", label: "Description", name: "description" },
-  { type: "number", label: "Tolerance (meter)", name: "tolerance" },
-  { type: "number", label: "Radius (meter)", name: "radius" },
-  { type: "text", label: "Contact No", name: "contactNo" },
-  { type: "text", label: "Address", name: "address" },
-];
+};
 
 // Yup Validation Schema
-const checkPointSchemaValidation = yup.object().shape({
-  geofenceType: yup.string().required("Geofence Type is required"),
+const checkpointSchemaValidation = yup.object().shape({
+  type: yup.string().required("Type is required"),
+  town: yup.string().required("Town is required"),
   name: yup.string().required("Name is required"),
-  category: yup.string(),
-  latitude: yup.number().required("Latitude is required"),
-  longitude: yup.number().required("Longitude is required"),
-  description: yup.string(),
-  tolerance: yup.number(),
-  radius: yup.number(),
-  geofenceTypeValue: yup.string(), // Additional field for storing the type (Polygon or Circle)
-  contactNo: yup.string(),
-  address: yup.string(),
+  category: yup.string().required("Category is required"),
+  // geofenceCoordinates: yup
+  //   .string()
+  //   .required("Geofence Coordinates are required"),
+  description: yup.string().required("Description is required"),
+  latitude: yup
+    .number()
+    .typeError("Tolerance must be a number")
+    .required("Tolerance is required"),
+  longitude: yup
+    .number()
+    .typeError("Tolerance must be a number")
+    .required("Tolerance is required"),
+  tolerance: yup
+    .number()
+    .typeError("Tolerance must be a number")
+    .required("Tolerance is required")
+    .positive("Tolerance must be a positive number"),
+  radius: yup
+    .number()
+    .typeError("Radius must be a number")
+    .required("Radius is required")
+    .positive("Radius must be a positive number"),
+  geofenceType: yup.string().required("Geofence Type is required"),
+  contactNo: yup.string().required("Contact No is required"),
+  address: yup.string().required("Address is required"),
 });
 
-// Mongoose Schema
-// interface GeofenceModel extends Document, Geofence {}
- interface TCheckPoint  extends CheckPoint {
-    coordinates: { latitude: number; longitude: number }[];
- } 
-
-const checkPointSchema = new Schema<TCheckPoint>(
+const checkpointSchema = new mongoose.Schema<Checkpoint>(
   {
-    geofenceType: { type: String, required: true },
+    type: { type: String, required: true },
+    town: { type: Schema.Types.ObjectId, ref: "Town", required: true },
     name: { type: String, required: true },
-    category: { type: String },
-    coordinates: [
-      {
-        latitude: { type: Number, required: true },
-        longitude: { type: Number, required: true },
-      },
-    ],
-    description: { type: String },
-    tolerance: { type: Number },
-    radius: { type: Number },
-    geofenceTypeValue: { type: String }, // Additional field for storing the type (Polygon or Circle)
-    contactNo: { type: String },
-    address: { type: String },
+    category: { type: String, required: true },
+    geofenceCoordinates: { type: String, default: "" },
+    latitude: { type: Number, required: true },
+    longitude: { type: Number, required: true },
+    description: { type: String, required: true },
+    tolerance: { type: Number, required: true },
+    radius: { type: Number, required: true },
+    geofenceType: { type: String, required: true },
+    contactNo: { type: String, required: true },
+    address: { type: String, required: true },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
-// Mongoose Model
-const CheckPointModel: Model<TCheckPoint> = model(
-  "CheckPointModel",
-  checkPointSchema
-);
+const initialCheckpointValues: Checkpoint = {
+  type: "",
+  town: "", // Set to the default town ID or leave it empty
+  name: "",
+  latitude: 0,
+  longitude: 0,
+  category: "",
+  // geofenceCoordinates: '',
+  description: "",
+  tolerance: 0, // Set to the default tolerance or leave it at 0
+  radius: 0, // Set to the default radius or leave it at 0
+  geofenceType: "",
+  contactNo: "",
+  address: "",
+};
 
-export { checkPointSchemaValidation, CheckPointModel, checkpointFormFields };
+const checkPointFormFields = [
+  { name: "type", label: "Type", type: "text" },
+  { name: "town", label: "Town", type: "select", options: [] }, // Populate with Towns dynamically
+  { name: "name", label: "Name", type: "text" },
+  { name: "category", label: "Category", type: "text" },
+  // { name: "geofenceCoordinates", label: "Geofence Coordinates", type: "text" },
+  { name: "latitude", type: "number", label: "Latitude" },
+  { name: "logitude", type: "number", label: "Logitude" },
+  { name: "description", label: "Description", type: "text" },
+  { name: "tolerance", label: "Tolerance (meter)", type: "text" },
+  { name: "radius", label: "Radius (meter)", type: "text" },
+  { name: "geofenceType", label: "Geofence Type", type: "text" },
+  { name: "contactNo", label: "Contact No", type: "text" },
+  { name: "address", label: "Address", type: "text" },
+];
+
+const CheckpointModel: Model<Checkpoint> =
+  mongoose.models?.Checkpoint ||
+  mongoose.model<Checkpoint>("Checkpoint", checkpointSchema);
+
+export {
+  checkpointSchemaValidation,
+  CheckpointModel,
+  checkPointFormFields,
+  initialCheckpointValues,
+};

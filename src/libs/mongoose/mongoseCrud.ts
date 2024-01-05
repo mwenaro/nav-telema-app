@@ -13,6 +13,7 @@ import {
   CompanyModel,
   TownModel,
   RouteModel,
+  CheckpointModel,
 } from "./models"; // Import your Mongoose models here
 
 // const { v4: uuidv4 } = require('uuid');
@@ -27,14 +28,16 @@ const modelMap: any = {
   activation: ActivationModel,
   drivers: DriverModel,
   stakeholder: StakeHolderModel,
-  truck: TruckModel,
+  trucks: TruckModel,
   company: CompanyModel,
   towns: TownModel,
   routes: RouteModel,
+  checkpoints: CheckpointModel,
 };
 
 // Create
-export async function createRecord(table: string, body: any) {
+
+export async function createRecord(table: string, records: any[] | any) {
   await dbCon();
   try {
     const model = modelMap[table.toLowerCase()];
@@ -42,15 +45,23 @@ export async function createRecord(table: string, body: any) {
     if (!model) {
       throw new Error(`Table ${table} not found`);
     }
+    let created = null;
+    if (Array.isArray(records)) {
+      const newRecords = records.map((record) => new model(record));
 
-    const newRecord = new model(body);
-    // const newRecord = new model({ ...body, id: uuidv4() });
-    let created = await newRecord.save();
+      // Use insertMany for batch insertion
+      created = await model.insertMany(newRecords);
+    } else {
+      const newRecord = new model(records);
 
-    return { mgs: "Record created successfully", created };
+      // const newRecord = new model({ ...body, id: uuidv4() });
+      created = await newRecord.save();
+    }
+
+    return { msg: "Records created successfully", created };
   } catch (error: any) {
-    console.error(`Error creating record in ${table}:`, error.message);
-    throw new Error(`Failed to create record in ${table}`);
+    console.error(`Error creating records in ${table}:`, error.message);
+    throw new Error(`Failed to create records in ${table}`);
   } finally {
     //  closeDbCon()
   }

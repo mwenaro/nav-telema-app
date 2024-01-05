@@ -20,4 +20,4 @@ const paymentSchema = new mongoose.Schema<Payment>({
      packageId: String,
   },{ timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
   
-export const PaymentModel = mongoose.models.Payment ||  mongoose.model<Payment>('Payment', paymentSchema);
+export const PaymentModel = mongoose.models?.Payment ||  mongoose.model<Payment>('Payment', paymentSchema);

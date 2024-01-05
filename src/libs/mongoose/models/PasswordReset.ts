@@ -27,5 +27,5 @@ const passwordResetSchema = new mongoose.Schema({
 });
 
 export const PasswordResetModel =
-  mongoose.models.PasswordReset ||
+  mongoose.models?.PasswordReset ||
   mongoose.model<PasswordReset>("PasswordReset", passwordResetSchema);

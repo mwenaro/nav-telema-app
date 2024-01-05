@@ -56,4 +56,4 @@
 // // module.exports = UserModel;
 
 // export const UserModel =
-//   mongoose.models.User || mongoose.model<User>("User", userSchema);
+//   mongoose.models?.User || mongoose.model<User>("User", userSchema);

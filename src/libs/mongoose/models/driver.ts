@@ -21,6 +21,6 @@ const driverSchema: Schema<Driver> = new Schema(
 );
 
 const DriverModel: Model<Driver> =
-  mongoose.models.Driver || mongoose.model<Driver>("Driver", driverSchema);
+  mongoose.models?.Driver || mongoose.model<Driver>("Driver", driverSchema);
 
 export { DriverModel };
