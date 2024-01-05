@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import mongoose, { Model, Schema } from "mongoose";
 import { TownModel } from "./town"; // Import the TownModel
+import { EAST_AFRICAN_TOWNS } from "@/data/countries";
 
 export type Checkpoint = {
   _id?: string;
@@ -55,7 +56,8 @@ const checkpointSchemaValidation = yup.object().shape({
 const checkpointSchema = new mongoose.Schema<Checkpoint>(
   {
     type: { type: String, required: true },
-    town: { type: Schema.Types.ObjectId, ref: "Town", required: true },
+    // town: { type: Schema.Types.ObjectId, ref: "Town", required: true },
+    town: { type: String, required: true },
     name: { type: String, required: true },
     category: { type: String, required: true },
     geofenceCoordinates: { type: String, default: "" },
@@ -87,20 +89,33 @@ const initialCheckpointValues: Checkpoint = {
   address: "",
 };
 
-const checkPointFormFields = [
-  { name: "type", label: "Type", type: "text" },
-  { name: "town", label: "Town", type: "select", options: [] }, // Populate with Towns dynamically
-  { name: "name", label: "Name", type: "text" },
-  { name: "category", label: "Category", type: "text" },
+const checkpointFormFields = [
+  // Populate with Towns dynamically
+  { name: "name", label: "Name", type: "text", labeled: true },
+  { name: "type", label: "Type", type: "text", labeled: true },
+  { name: "category", label: "Category", type: "text", labeled: true },
+  {
+    name: "town",
+    label: "Town",
+    type: "select",
+    options: EAST_AFRICAN_TOWNS.map((c) => c.town),
+    labeled: true,
+  },
   // { name: "geofenceCoordinates", label: "Geofence Coordinates", type: "text" },
-  { name: "latitude", type: "number", label: "Latitude" },
-  { name: "logitude", type: "number", label: "Logitude" },
-  { name: "description", label: "Description", type: "text" },
-  { name: "tolerance", label: "Tolerance (meter)", type: "text" },
-  { name: "radius", label: "Radius (meter)", type: "text" },
-  { name: "geofenceType", label: "Geofence Type", type: "text" },
-  { name: "contactNo", label: "Contact No", type: "text" },
-  { name: "address", label: "Address", type: "text" },
+  { name: "latitude", type: "number", label: "Latitude", labeled: true },
+
+  { name: "longitude", type: "number", label: "Longitude", labeled: true },
+  { name: "description", label: "Description", type: "text", labeled: true },
+  {
+    name: "tolerance",
+    label: "Tolerance (meter)",
+    type: "text",
+    labeled: true,
+  },
+  { name: "radius", label: "Radius (meter)", type: "text", labeled: true },
+  { name: "geofenceType", label: "Geofence Type", type: "text", labeled: true },
+  { name: "contactNo", label: "Contact No", type: "text", labeled: true },
+  { name: "address", label: "Address", type: "text", labeled: true },
 ];
 
 const CheckpointModel: Model<Checkpoint> =
@@ -110,6 +125,6 @@ const CheckpointModel: Model<Checkpoint> =
 export {
   checkpointSchemaValidation,
   CheckpointModel,
-  checkPointFormFields,
+  checkpointFormFields,
   initialCheckpointValues,
 };

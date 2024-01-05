@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Input } from "@/components";
 import AddButton from "@/components/templates/dashboard/AddButton";
 
-import { townFormFields } from "@/libs/mongoose/models/town";
+import { checkpointFormFields } from "@/libs/mongoose/models/checkpoint";
 
-export default function AddTownForm({idealNumFields = 8}) {
+export default function AddCheckpointForm({ idealNumFields = 8 }) {
   const [showImagePrev, setShowImagePrev] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const formFields = townFormFields; // Assuming townFormFields is an array of form fields.
+  const formFields = checkpointFormFields; // Assuming checkpointFormFields is an array of form fields.
 
   // Calculate the number of steps needed based on the form fields.
   const numSteps = Math.ceil(formFields.length / idealNumFields);
@@ -16,9 +16,12 @@ export default function AddTownForm({idealNumFields = 8}) {
   const progressPercentage = ((currentStep + 1) / numSteps) * 100;
 
   // Function to render a specific step.
-  const renderStep = (stepIndex:number) => {
+  const renderStep = (stepIndex: number) => {
     const startIdx = stepIndex * idealNumFields;
-    const endIdx = Math.min((stepIndex + 1) * idealNumFields, formFields.length);
+    const endIdx = Math.min(
+      (stepIndex + 1) * idealNumFields,
+      formFields.length
+    );
 
     return (
       <div
@@ -56,7 +59,7 @@ export default function AddTownForm({idealNumFields = 8}) {
         ))}
         {stepIndex === numSteps - 1 && (
           <AddButton
-            label={`Add Town`}
+            label={`Add Checkpoint`}
             // label={`Add Driver - Step ${stepIndex + 1}`}
             className="my-6 mx-12"
             type="submit"
@@ -79,7 +82,7 @@ export default function AddTownForm({idealNumFields = 8}) {
       <div className="flex justify-between mt-4">
         {currentStep > 0 && (
           <button
-          type="button"
+            type="button"
             onClick={() => setCurrentStep(currentStep - 1)}
             className="text-blue-500 cursor-pointer"
           >
@@ -88,7 +91,7 @@ export default function AddTownForm({idealNumFields = 8}) {
         )}
         {currentStep < numSteps - 1 && (
           <button
-          type="button"
+            type="button"
             onClick={() => setCurrentStep(currentStep + 1)}
             className="text-blue-500 cursor-pointer"
           >

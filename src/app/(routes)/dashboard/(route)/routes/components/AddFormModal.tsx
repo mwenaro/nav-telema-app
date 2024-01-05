@@ -8,7 +8,7 @@ import AddRouteForm from "./AddForm";
 import LocalStorageManager from "@/utils/localStorage";
 import { useRouter } from "next/navigation";
 import { postRoute, updateRoute } from "./handleSubmit";
-import { routeSchemaValidation } from "@/libs/mongoose/models/route";
+import { initialRouteValues, routeSchemaValidation } from "@/libs/mongoose/models/route";
 
 export default function AddRouteModal({ selectedRoute, routes }: any) {
   const router = useRouter();
@@ -40,24 +40,7 @@ export default function AddRouteModal({ selectedRoute, routes }: any) {
           router.refresh();
         }}
         initialValues={
-          selectedRoute ?? {
-            routeName: '',
-            shortName: '',
-            userName: '',
-            application: '',
-            userGroup: '',
-            email: '',
-            mobileNumber: '',
-            telephoneNumber: '',
-            country: '',
-            state: '',
-            city: '',
-            monthlySmsLimit: 0,
-            dailySmsLimit: 0,
-            lastLoginTime: null,
-            userTimeZone: '',
-            createdDate: null,
-          }
+          initialRouteValues
         }
         validationSchema={routeSchemaValidation}
       >

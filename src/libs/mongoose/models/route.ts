@@ -1,21 +1,14 @@
 import * as yup from "yup";
 import mongoose, { Schema, Model } from "mongoose";
-import { dbCon } from "../dbCon";
-import { Town, TownModel } from "./town";
-
-let fetchedTowns: Town[] = [];
-async () => {
-  await dbCon();
-  fetchedTowns = await TownModel.find();
-};
+import { EAST_AFRICAN_TOWNS } from "@/data/countries";
 
 // Define the interface for Route
 export interface Route {
-  _id: string;
+  _id?: string;
   name: string;
   shortName: string;
-  startPoint: string | any; // Use the ID of the Town as a reference
-  endPoint: string | any; // Use the ID of the Town as a reference
+  startPoint: string | any;
+  endPoint: string | any;
 }
 
 // Yup Validation Schema
@@ -26,12 +19,20 @@ const routeSchemaValidation = yup.object().shape({
   endPoint: yup.string().required("End Point is required"),
 });
 
+// Initial values for the Route model
+const initialRouteValues: Route = {
+  name: "",
+  shortName: "",
+  startPoint:  "",
+  endPoint:  "",
+};
+
 const routeSchema = new Schema<Route>(
   {
     name: { type: String, required: true },
     shortName: { type: String, required: true },
-    startPoint: { type: Schema.Types.ObjectId, ref: "Town", required: true },
-    endPoint: { type: Schema.Types.ObjectId, ref: "Town", required: true },
+    startPoint: { type: String },
+    endPoint: { type: String },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
@@ -43,18 +44,18 @@ const routeFormFields = [
     label: "Start Point",
     name: "startPoint",
     type: "select",
-    options: (fetchedTowns ?? []).map(town=>town._id),
-  }, // Populate with Towns dynamically
+    options: EAST_AFRICAN_TOWNS.map((c) => c.town),
+  },
   {
     label: "End Point",
     name: "endPoint",
     type: "select",
-    options: (fetchedTowns ?? []).map(town=>town._id),
-  }, // Populate with Towns dynamically
+    options: EAST_AFRICAN_TOWNS.map((c) => c.town),
+  },
 ];
 
 // Mongoose Model
 const RouteModel: Model<Route> =
   mongoose.models?.Route || mongoose.model<Route>("Route", routeSchema);
 
-export { routeSchemaValidation, RouteModel, routeFormFields };
+export { routeSchemaValidation, RouteModel, routeFormFields, initialRouteValues };
