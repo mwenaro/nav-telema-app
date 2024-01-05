@@ -11,14 +11,14 @@ import { Route } from "@/libs/mongoose/models/route";
 import { useFetch } from "@/hooks";
 
 export default function DashboardCompanies({ vendor, params }: any) {
-  // const [routes, setRoutes] = useState<Route[]>([]);
+
   const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
   const { data: globalData, setData } = useGlobalContext();
-  const { data: routes, error } = useFetch("/api/route");
+ let { data: routes, error } = useFetch("/api/route");
   const searchParams = useSearchParams();
 
-  if (!Array.isArray(routes) || routes?.length <= 0)
-    return <div>No routes</div>;
+  if (!Array.isArray(routes) ) routes =[]
+    
 
   return (
     <PageHOC>

@@ -1,6 +1,4 @@
 "use client";
-import * as Yup from "yup";
-
 import Modal from "@/components/molecules/Modal";
 import { UniversalFormikForm } from "@/components/templates/form";
 import { useGlobalContext } from "@/context/GlobalContext";

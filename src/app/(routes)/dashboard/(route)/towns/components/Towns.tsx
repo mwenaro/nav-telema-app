@@ -15,12 +15,12 @@ export default function DashboardTowns({ vendor, params }: any) {
   // const [towns, setTowns] = useState<Town[]>([]);
   const [selectedTown, setSelectedTown] = useState<Town | null>(null);
   const { data: globalData, setData } = useGlobalContext();
-  const { data: towns, error } = useFetch("/api/town");
+  let { data: towns, error } = useFetch("/api/town");
   const searchParams = useSearchParams();
 
 
 
-  if (!Array.isArray(towns) || towns?.length <= 0) return <div>No towns</div>;
+  if (!Array.isArray(towns)) towns = [] ;
 
   return (
     <PageHOC>

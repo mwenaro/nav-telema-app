@@ -7,23 +7,23 @@ import { useState } from "react";
 
 import { Wrapper } from "@/components/templates/dashboard/main";
 import { FaEdit } from "react-icons/fa";
-import AddCompanyModal from "./AddFormModal";
-import { Company } from "@/libs/mongoose/models/company";
+import AddTruckModal from "./AddFormModal";
+import { Truck } from "@/libs/mongoose/models/truck";
 import { useFetch } from "@/hooks";
 
 export default function DashboardCompanies({ vendor, params }: any) {
-  // const [companys, setCompanys] = useState<Company[]>([]);
-  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
+  // const [trucks, setTrucks] = useState<Truck[]>([]);
+  const [selectedTruck, setSelectedTruck] = useState<Truck | null>(null);
   const { data: globalData, setData } = useGlobalContext();
-  let { data: companys, error } = useFetch("/api/company");
+  let { data: trucks, error } = useFetch("/api/truck");
   const searchParams = useSearchParams();
 
-  // if (!Array.isArray(companys) ) {return <div>No companys</div>};
-  companys = !Array.isArray(companys) ? [] : companys;
+  // if (!Array.isArray(trucks) ) {return <div>No trucks</div>};
+  trucks = !Array.isArray(trucks) ? [] : trucks;
 
   return (
     <PageHOC>
-      <Wrapper shouldAddBtn={true} addBtnLabel="Add Company">
+      <Wrapper shouldAddBtn={true} addBtnLabel="Add Truck">
         {/* Headers */}
 
         <div className="w-full overflow-x-hidden grid grid-cols-6 md:grid-cols-10 border-b-2 border-solid bg-[#f9f9ff] font-bold py-3 mx-1 text-sm">
@@ -40,36 +40,30 @@ export default function DashboardCompanies({ vendor, params }: any) {
           <span className="overflow-hidden">Edit</span>
         </div>
 
-        {companys &&
-          companys.map((p: Company, indx: number) => (
+        {trucks &&
+          trucks.map((p: Truck, indx: number) => (
             <div
               key={`${p._id}-${indx}`}
               className="w-full overflow-x-hidden grid  grid-cols-6 md:grid-cols-10  border-b-2 border-solid hover:bg-[#f9f9ff] py-3 mx-1 text-sm place-content-center"
             >
               <span className="overflow-hidden">{indx + 1}</span>
               <span className="overflow-hidden "></span>
-              <span className="overflow-hidden ">{p.companyName}</span>
-              <span className="overflow-hidden hidden md:flex">{p.email}</span>
-              <span className="overflow-hidden col-span-2 text-clip hidden md:flex">
-                {p.country}
+              <span className="overflow-hidden ">{p.name}</span>
+              <span className="overflow-hidden hidden md:flex">
+                {p.plateNumber}
               </span>
-              <span className="overflow-hidden hidden md:flex">{p.city}</span>
+              <span className="overflow-hidden col-span-2 text-clip hidden md:flex">
+                {p.simCardNumber}
+              </span>
+              <span className="overflow-hidden hidden md:flex">{}</span>
 
               <span
                 className={`overflow-hidden flex justify-center items-center`}
-              >
-                {" "}
-                <span
-                  className={`p-1 rounded-full mx-1 ${
-                    p.status ? "bg-green-300" : "bg-red-400"
-                  }`}
-                ></span>
-                {`${p.status ? "Active" : "Inactive"}`}
-              </span>
+              ></span>
               <div className="flex justify-between items-center ">
                 <button
                   onClick={() => {
-                    setSelectedCompany(p);
+                    setSelectedTruck(p);
                     setData({
                       ...globalData,
                       isModalOpen: !globalData.isModalOpen,
@@ -81,11 +75,11 @@ export default function DashboardCompanies({ vendor, params }: any) {
                   <FaEdit className="text-lg text-orange-400" />
                 </button>
 
-                <DeleteButton id={p._id!} table="company" />
+                <DeleteButton id={p._id!} table="truck" />
               </div>
             </div>
           ))}
-        <AddCompanyModal selectedCompany={selectedCompany} />
+        <AddTruckModal selectedTruck={selectedTruck} />
       </Wrapper>
     </PageHOC>
   );

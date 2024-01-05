@@ -1,17 +1,17 @@
 "use client";
-import * as Yup from "yup";
 
 import Modal from "@/components/molecules/Modal";
 import { UniversalFormikForm } from "@/components/templates/form";
 import { useGlobalContext } from "@/context/GlobalContext";
-import AddCompanyForm from "./AddForm";
+import AddTruckForm from "./AddForm";
 
 import LocalStorageManager from "@/utils/localStorage";
 import { useRouter } from "next/navigation";
-import { postCompany, updateCompany } from "./handleSubmit";
-import { companySchemaValidation } from "@/libs/mongoose/models/company";
+import { postTruck, updateTruck } from "./handleSubmit";
+import { truckSchemaValidation, initialTruckValues } from "@/libs/mongoose/models/truck";
 
-export default function AddCompanyModal({ selectedCompany, companys }: any) {
+
+export default function AddTruckModal({ selectedTruck, trucks }: any) {
   const router = useRouter();
   const { data: globalData, setData } = useGlobalContext(),
     { isModalOpen } = globalData;
@@ -25,12 +25,12 @@ export default function AddCompanyModal({ selectedCompany, companys }: any) {
     >
       <UniversalFormikForm
         handleSubmit={(values, { resetForm }) => {
-          !selectedCompany
-            ? postCompany({ ...values }, () => {
+          !selectedTruck
+            ? postTruck({ ...values }, () => {
                 resetForm();
                 router.refresh();
               })
-            : updateCompany(values, () => {
+            : updateTruck(values, () => {
                 resetForm();
                 setData({
                   ...globalData,
@@ -41,32 +41,15 @@ export default function AddCompanyModal({ selectedCompany, companys }: any) {
           router.refresh();
         }}
         initialValues={
-          selectedCompany ?? {
-            companyName: '',
-            shortName: '',
-            userName: '',
-            application: '',
-            userGroup: '',
-            email: '',
-            mobileNumber: '',
-            telephoneNumber: '',
-            country: '',
-            state: '',
-            city: '',
-            monthlySmsLimit: 0,
-            dailySmsLimit: 0,
-            lastLoginTime: null,
-            userTimeZone: '',
-            createdDate: null,
-          }
+          selectedTruck ?? initialTruckValues
         }
-        validationSchema={companySchemaValidation}
+        validationSchema={truckSchemaValidation}
       >
-        {!selectedCompany ? (
-          <AddCompanyForm />
+        {!selectedTruck ? (
+          <AddTruckForm />
         ) : (
-          // <EditCompanyForm handleSubmit={() => console.log("")}  />
-          <AddCompanyForm />
+          // <EditTruckForm handleSubmit={() => console.log("")}  />
+          <AddTruckForm />
         )}
       </UniversalFormikForm>
     </Modal>

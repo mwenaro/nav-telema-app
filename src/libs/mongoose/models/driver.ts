@@ -1,4 +1,3 @@
-
 import { Driver } from "@/types/nav-tel-types";
 import mongoose, { Schema, Model } from "mongoose";
 
@@ -7,7 +6,7 @@ const driverSchema: Schema<Driver> = new Schema(
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     driverNumber: { type: String, required: true },
-    status : String,
+    status: String,
     state: { type: String, required: true },
     city: { type: String },
     contactNumber: { type: String, required: true },
@@ -15,7 +14,7 @@ const driverSchema: Schema<Driver> = new Schema(
     password: {
       type: String,
       required: true,
-      select: false
+      select: false,
     },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
