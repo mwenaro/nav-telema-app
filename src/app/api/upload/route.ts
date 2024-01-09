@@ -1,8 +1,8 @@
 import { handleFileUpload } from "@/utils/upload";
-import { NextRequest, Response } from "next/server";
 
 
-export async function POST(request: NextRequest) {
+
+export async function POST(request: Request) {
   const data = await request.formData();
 
   try {

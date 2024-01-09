@@ -1,4 +1,4 @@
-import { Response } from 'next/server';
+
 
 const table = 'users';
 export async function GET(

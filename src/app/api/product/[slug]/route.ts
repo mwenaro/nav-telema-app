@@ -37,7 +37,7 @@ export async function DELETE(
     const result = await deleteRecord(table, slug);
     if (fetchedProduct.img) await deleteUploadedFile(fetchedProduct.img);
 
-    return new Response(JSON.stringify({ success: true,success:true,  message: result }));
+    return new Response(JSON.stringify({ success: true,  message: result }));
   } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
@@ -55,7 +55,7 @@ export async function PUT(
     if (body.img) {
       await moveFilesToUpload(body.img);
     }
-    return new Response(JSON.stringify({ success: true,success:true,  message: result }));
+    return new Response(JSON.stringify({ success: true,  message: result }));
   } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,

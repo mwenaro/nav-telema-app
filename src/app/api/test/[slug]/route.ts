@@ -1,5 +1,5 @@
 import { deleteRecord, getRecordById, updateRecord } from '@/libs/mongoose/mongoseCrud';
-import { Response } from 'next/server';
+
 
 const table = 'Products';
 export async function GET(
