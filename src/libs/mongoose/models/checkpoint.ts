@@ -6,7 +6,7 @@ import { EAST_AFRICAN_TOWNS } from "@/data/countries";
 export type Checkpoint = {
   _id?: string;
   type?: string;
-  town: string | any; // Use the ID of the Town as a reference
+  town: string; // Use the ID of the Town as a reference
   name: string;
   category?: string;
   geofenceCoordinates?: string;
@@ -45,18 +45,28 @@ const checkpointSchemaValidation = yup.object().shape({
 const checkpointSchema = new mongoose.Schema<Checkpoint>(
   {
     type: { type: String, default: "Checkpoint" },
-    // town: { type: Schema.Types.ObjectId, ref: "Town", required: true },
-    town: { type: String, required: true },
     name: { type: String, required: true },
+    // town: { type: Schema.Types.ObjectId, ref: "Town", required: true },
     category: { type: String, default: "" },
     geofenceCoordinates: { type: String, default: "" },
     latitude: { type: Number, required: true },
     longitude: { type: Number, required: true },
-    description: { type: String, required: true },
+    description: { type: String, default: "" },
     tolerance: { type: Number, required: true, default: 0 },
     radius: { type: Number, required: true, default: 30 },
     contactNo: { type: String, required: true },
-    address: { type: String, required: true },
+    town: {
+      type: String,
+      default: function () {
+        return this.name || "";
+      },
+    },
+    address: {
+      type: String,
+      default: function () {
+        return this.name || "";
+      },
+    },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );

@@ -26,33 +26,32 @@ export default function DashboardCheckpoints({ vendor, params }: any) {
       <Wrapper shouldAddBtn={true} addBtnLabel="Add Checkpoint">
         {/* Headers */}
 
-        <div className="w-full overflow-x-hidden grid grid-cols-6 md:grid-cols-10 border-b-2 border-solid bg-[#f9f9ff] font-bold py-3 mx-1 text-sm">
+        <div className="w-full overflow-x-hidden grid grid-cols-4 md:grid-cols-9 border-b-2 border-solid bg-[#f9f9ff] font-bold py-3 mx-1 text-sm">
           <span className="overflow-hidden">#</span>
-          <span className="overflow-hidden">Image</span>
-          <span className="overflow-hidden hidden md:flex">Name</span>
-          <span className="overflow-hidden hidden md:flex ">Number</span>
-          <span className="overflow-hidden col-span-2 hidden md:flex">
-            Country
+          <span className="overflow-hidden">Name</span>
+          <span className="overflow-hidden hidden md:flex">Town</span>
+          <span className="overflow-hidden col-span-2 hidden md:flex ">
+            Contact Number
           </span>
-          <span className="overflow-hidden hidden md:flex">City</span>
+          <span className="overflow-hidden col-span-2  hidden md:flex">Coordinate</span>
 
-          <span className="overflow-hidden">Status</span>
-          <span className="overflow-hidden">Edit</span>
+          <span className="overflow-hidden text-center col-span-2">Operations</span>
         </div>
 
         {checkpoints.map((p: Checkpoint, indx: number) => (
           <div
             key={`${p._id}-${indx}`}
-            className="w-full overflow-x-hidden grid  grid-cols-6 md:grid-cols-10  border-b-2 border-solid hover:bg-[#f9f9ff] py-3 mx-1 text-sm place-content-center"
+            className="w-full overflow-x-hidden grid  grid-cols-5 md:grid-cols-9  border-b-2 border-solid hover:bg-[#f9f9ff] py-3 mx-1 text-sm place-content-center"
           >
             <span className="overflow-hidden">{indx + 1}</span>
-            <span className="overflow-hidden "></span>
             <span className="overflow-hidden ">{p.name}</span>
-            <span className="overflow-hidden hidden md:flex">{}</span>
-            <span className="overflow-hidden col-span-2 text-clip hidden md:flex">
-              {}
+            <span className="overflow-hidden hidden md:flex">{p.town}</span>
+            <span className="overflow-hidden col-span-2 hidden md:flex">
+              {p.contactNo}
             </span>
-            <span className="overflow-hidden hidden md:flex">{}</span>
+            <span className="overflow-hidden  text-clip hidden md:flex">
+              {p.latitude}, {p.longitude}
+            </span>
 
             <span
               className={`overflow-hidden flex justify-center items-center`}
