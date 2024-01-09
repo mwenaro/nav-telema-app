@@ -8,7 +8,7 @@ export async function GET(
   try {
     return Response.json({});
   } catch (error: any) {
-    return Response.json({ error: error.message });
+    return new Response(JSON.stringify({message:error.message}), {status:500});;
   }
 }
 
@@ -21,7 +21,7 @@ export async function DELETE(
 
     return Response.json({ resp:"Hello" });
   } catch (error: any) {
-    return Response.json({ error: error.message });
+    return new Response(JSON.stringify({message:error.message}), {status:500});;
   }
 }
 export async function PUT(
@@ -34,6 +34,6 @@ export async function PUT(
 
     return Response.json({ resp:"" });
   } catch (error: any) {
-    return Response.json({ error: error.message });
+    return new Response(JSON.stringify({message:error.message}), {status:500});;
   }
 }

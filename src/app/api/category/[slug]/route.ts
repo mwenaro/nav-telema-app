@@ -51,7 +51,7 @@ export async function PUT(
 
   try {
     const result = await updateRecord(table, slug, body);
-    return Response.json({success:true,  message: result });
+    return new Response(JSON.stringify({success:true,  message: result }), {status:500});
   } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,

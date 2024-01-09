@@ -12,7 +12,7 @@ export async function POST(request: Request) {
         return Response.json({ msg: 'Email sent successfully ', p });
     } catch (error: any) {
         console.log({ error: error.message });
-        return Response.json({ error: error.message });
+        return new Response(JSON.stringify({message:error.message}), {status:500});;
       
     }
 }

@@ -15,7 +15,7 @@ export async function GET(
     }
     
   } catch (error: any) {
-    return Response.json({ error: error.message });
+    return new Response(JSON.stringify({message:error.message}), {status:500});;
   }
 }
 
@@ -25,11 +25,11 @@ export async function DELETE(
 ) {
   try {
     const result = await deleteRecord(table,slug);
-    return Response.json({success:true,  message: result });
+    return new Response(JSON.stringify({success:true,  message: result }), {status:500});
 
     
   } catch (error: any) {
-    return Response.json({ error: error.message }, {status:500});
+    return new Response(JSON.stringify({message:error.message}), {status:500});
   }
 }
 export async function PUT(
@@ -40,9 +40,9 @@ export async function PUT(
 
  try{
   const result = await updateRecord(table, slug, body);
-  return Response.json({success:true,  message: result });
+  return new Response(JSON.stringify({success:true,  message: result }), {status:500});
 
   } catch (error: any) {
-    return Response.json({ error: error.message }, {status:500});
+    return new Response(JSON.stringify({message:error.message}), {status:500});
   }
 }
