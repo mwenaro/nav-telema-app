@@ -36,9 +36,9 @@ export async function POST(request: Request) {
 
     const result = await createRecord(table, body);
 
-    return Response.json({ result }, { status: 201 });
+    return new Response(JSON.stringify({success:true, message:result}))
   } catch (error: any) {
     console.log({ error: error.message });
-    return Response.json({ error: error.message }, { status: 500 });
+    return new Response(JSON.stringify({success:false, msg: error.message}), {status:500});
   }
 }
