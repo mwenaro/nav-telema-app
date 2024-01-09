@@ -6,7 +6,7 @@ import {
   UserModel,
 } from "@/libs/mongoose/models";
 import { getSearchParams } from "@/utils/key_functions";
-import { NextResponse } from "next/server";
+
 
 export async function GET(request: Request) {
   const vendor = getSearchParams(request.url);
@@ -39,7 +39,7 @@ export async function GET(request: Request) {
           fetchedOrders,
         });
 
-    return new NextResponse(JSON.stringify(data), {
+    return new Response(JSON.stringify(data), {
       status: 200,
       statusText: "OK",
     });

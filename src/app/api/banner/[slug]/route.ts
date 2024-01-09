@@ -34,7 +34,7 @@ export async function DELETE(
 ) {
   try {
     const result = await deleteRecord(table, slug);
-    return new Response(JSON.stringify({ message: result }));
+    return new Response(JSON.stringify({success:true,  message: result }));
   } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,

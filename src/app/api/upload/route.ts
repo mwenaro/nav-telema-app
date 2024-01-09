@@ -1,5 +1,5 @@
 import { handleFileUpload } from "@/utils/upload";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, Response } from "next/server";
 
 
 export async function POST(request: NextRequest) {
@@ -8,9 +8,9 @@ export async function POST(request: NextRequest) {
   try {
     const res = await handleFileUpload((data.get("file")||data.get("image") ) as unknown as File);
     if(!res.success) throw new Error("An error occured while uploading")
-    return new NextResponse(JSON.stringify(res));
+    return new Response(JSON.stringify(res));
   } catch (error: any) {
-    return new NextResponse(
+    return new Response(
       JSON.stringify({ success: false, error: error.message }),
       { status: 500 }
     );

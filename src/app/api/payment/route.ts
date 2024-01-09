@@ -6,7 +6,7 @@ import {
   getRecords,
 } from "@/libs/mongoose/mongoseCrud";
 import { getSearchParams } from "@/utils/key_functions";
-import { NextResponse } from "next/server";
+
 const table = "payment";
 
 export async function GET(request: Request) {
@@ -40,10 +40,10 @@ export async function POST(request: Request) {
 
     const result = await createRecord(table, body);
 
-    return new NextResponse(JSON.stringify({ result }), { status: 201 });
+    return new Response(JSON.stringify({ result }), { status: 201 });
   } catch (error: any) {
     console.log({ error: error.message });
-    return new NextResponse(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
     });
   }

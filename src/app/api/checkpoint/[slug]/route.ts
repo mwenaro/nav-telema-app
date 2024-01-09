@@ -3,7 +3,7 @@ import {
   getRecordById,
   updateRecord,
 } from "@/libs/mongoose/mongoseCrud";
-import { NextResponse } from "next/server";
+
 
 const table = "checkpoints";
 export async function GET(
@@ -13,10 +13,12 @@ export async function GET(
   try {
     const product = await getRecordById(table, slug);
     if (product) {
-      return NextResponse.json(product);
+      return new Response(JSON.stringify(product));
     } else {
-      return NextResponse.json(
-        { error: `${table.substring(0, table.length - 2)} not found` },
+      return new Response(
+        JSON.stringify({
+          error: `${table.substring(0, table.length - 2)} not found`,
+        }),
         { status: 400 }
       );
     }
@@ -31,7 +33,7 @@ export async function DELETE(
 ) {
   try {
     const result = await deleteRecord(table, slug);
-    return new Response(JSON.stringify({ message: result }));
+    return new Response(JSON.stringify({success:true,  message: result }));
   } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
@@ -46,7 +48,7 @@ export async function PUT(
 
   try {
     const result = await updateRecord(table, slug, body);
-    return new Response(JSON.stringify({ message: result }));
+    return new Response(JSON.stringify({success:true,  message: result }));
   } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,

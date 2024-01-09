@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { Response } from 'next/server';
 
 const table = 'users';
 export async function GET(
@@ -6,9 +6,9 @@ export async function GET(
   { params: { slug } }: { params: { slug: any } }
 ) {
   try {
-    return NextResponse.json({});
+    return Response.json({});
   } catch (error: any) {
-    return NextResponse.json({ error: error.message });
+    return Response.json({ error: error.message });
   }
 }
 
@@ -19,9 +19,9 @@ export async function DELETE(
   try {
    
 
-    return NextResponse.json({ resp:"Hello" });
+    return Response.json({ resp:"Hello" });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message });
+    return Response.json({ error: error.message });
   }
 }
 export async function PUT(
@@ -32,8 +32,8 @@ export async function PUT(
 
  try{
 
-    return NextResponse.json({ resp:"" });
+    return Response.json({ resp:"" });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message });
+    return Response.json({ error: error.message });
   }
 }

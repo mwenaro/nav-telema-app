@@ -1,6 +1,6 @@
 import { createRecord,  getRecordByFields,  getRecords } from '@/libs/mongoose/mongoseCrud';
 import { getSearchParams } from '@/utils/key_functions';
-import { NextResponse } from 'next/server';
+import { Response } from 'next/server';
 const table = "orders"
 
 export async function GET(request: Request) {
@@ -36,9 +36,9 @@ export async function POST(request: Request) {
 
     const result = await createRecord(table, body);
 
-    return NextResponse.json({ result }, { status: 201 });
+    return Response.json({ result }, { status: 201 });
   } catch (error: any) {
     console.log({ error: error.message });
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return Response.json({ error: error.message }, { status: 500 });
   }
 }

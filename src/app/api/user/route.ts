@@ -2,7 +2,7 @@ import { pwdHasher } from "@/libs/bcrypt/passord";
 import { UserModel } from "@/libs/mongoose/models";
 import { getRecords } from "@/libs/mongoose/mongoseCrud";
 
-import { NextResponse } from "next/server";
+
 import { dbCon } from "@/libs/mongoose/dbCon";
 
 import { getSearchParams } from "@/utils/key_functions";
@@ -87,7 +87,7 @@ export async function POST(request: Request) {
       activationToken
     );
 
-    return new NextResponse(
+    return new Response(
       JSON.stringify({ success: true, saved, body, emailStatus }),
       {
         status: 201,
@@ -95,7 +95,7 @@ export async function POST(request: Request) {
     );
   } catch (error: any) {
     console.log({ error: error.message });
-    return new NextResponse(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers,
     });

@@ -4,7 +4,7 @@ import {
   getRecordById,
   updateRecord,
 } from "@/libs/mongoose/mongoseCrud";
-import { NextResponse } from "next/server";
+
 
 const table = "drivers";
 export async function GET(
@@ -14,9 +14,9 @@ export async function GET(
   try {
     const product = await getRecordById(table, slug);
     if (product) {
-      return new NextResponse(JSON.stringify(product));
+      return new Response(JSON.stringify(product));
     } else {
-      return new NextResponse(
+      return new Response(
         JSON.stringify({
           error: `${table.substring(0, table.length - 2)} not found`,
         }),
@@ -26,7 +26,7 @@ export async function GET(
       );
     }
   } catch (error: any) {
-    return new NextResponse(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
     });
   }
@@ -38,9 +38,9 @@ export async function DELETE(
 ) {
   try {
     const result = await deleteRecord(table, slug);
-    return new NextResponse(JSON.stringify({success:true, message: result }));
+    return new Response(JSON.stringify({success:true,  message: result }));
   } catch (error: any) {
-    return new NextResponse(JSON.stringify({ success:false,error: error.message }), {
+    return new Response(JSON.stringify({ success:false,error: error.message }), {
       status: 500,
     });
   }
@@ -58,9 +58,9 @@ export async function PUT(
 
   try {
     const result = await updateRecord(table, slug, body);
-    return new NextResponse(JSON.stringify({ success: true, message: result }));
+    return new Response(JSON.stringify({ success: true,success:true,  message: result }));
   } catch (error: any) {
-    return new NextResponse(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
     });
   }

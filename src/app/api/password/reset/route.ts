@@ -5,7 +5,7 @@ import {
   findPasswordResetRecord,
   markPasswordResetRecordAsUsed,
 } from "@/libs/mongoose/passwordReset";
-import { NextResponse } from "next/server";
+
 
 export async function POST(request: Request) {
   let { token, password } = await request.json();
@@ -15,7 +15,7 @@ export async function POST(request: Request) {
 
     let savedRecord = await findPasswordResetRecord(token);
     if (!savedRecord)
-      return new NextResponse(JSON.stringify({ msg: "Invalid token ", savedRecord }), {
+      return new Response(JSON.stringify({ msg: "Invalid token ", savedRecord }), {
         status: 404,
       });
 
@@ -29,20 +29,20 @@ export async function POST(request: Request) {
     let upadted = await markPasswordResetRecordAsUsed(savedRecord.email, token);
 
     if (!upadted || !updatedUser)
-      return new NextResponse(
+      return new Response(
         JSON.stringify({ msg: "Reset failed. Try again" }),
         {
           status: 500,
         }
       );
 
-    return new NextResponse(
+    return new Response(
       JSON.stringify({
         msg: "Password Successfully Reset. Go to login ",
       })
     );
   } catch (error) {
-    return new NextResponse(JSON.stringify({ msg: "An error has occured!" }), {
+    return new Response(JSON.stringify({ msg: "An error has occured!" }), {
       status: 500,
     });
   }

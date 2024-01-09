@@ -1,5 +1,5 @@
 import { sendTestEmail } from "@/libs/nodemailer/gmail";
-import { NextResponse } from "next/server";
+
 import { UserModel } from "@/libs/mongoose/models";
 import { dbCon } from "@/libs/mongoose/dbCon";
 
@@ -12,14 +12,14 @@ export async function POST(request: Request) {
     try {
         let body = await request.json(),
             { email, name, subject } = body;
-        // return NextResponse.json(body);
+        // return Response.json(body);
 
 
         let p = await sendTestEmail(email, subject, "Another Email Test");
-        return NextResponse.json({ msg: 'Email sent successfully ', p });
+        return Response.json({ msg: 'Email sent successfully ', p });
     } catch (error: any) {
         console.log({ error: error.message });
-        return NextResponse.json({ error: error.message });
+        return Response.json({ error: error.message });
 
     }
 }
@@ -37,10 +37,10 @@ export async function GET(request: Request) {
             "password": "pwd@1211"
         });
         let created = await user.save()
-        return NextResponse.json({ msg: 'creat tesing ', created });
+        return Response.json({ msg: 'creat tesing ', created });
     } catch (error: any) {
         console.log({ error: error.message });
-        return NextResponse.json({ error: error.message });
+        return Response.json({ error: error.message });
 
     } 
 }

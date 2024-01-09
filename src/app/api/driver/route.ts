@@ -1,6 +1,6 @@
 import { pwdHasher } from "@/libs/bcrypt/passord";
 
-import { NextResponse } from "next/server";
+
 import { dbCon } from "@/libs/mongoose/dbCon";
 
 import { getSearchParams } from "@/utils/key_functions";
@@ -67,12 +67,12 @@ export async function POST(request: Request) {
     //   activationToken
     // );
 
-    return new NextResponse(JSON.stringify({ success: true, saved, body }), {
+    return new Response(JSON.stringify({ success: true, saved, body }), {
       status: 201,
     });
   } catch (error: any) {
     console.log({ error: error.message });
-    return new NextResponse(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers,
     });

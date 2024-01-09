@@ -1,6 +1,6 @@
 import { defProducts as products } from "@/dummy_data/products";
 import { createRecord, getRecords } from "@/libs/mongoose/mongoseCrud";
-import { NextResponse } from "next/server";
+
 const table = "products";
 
 export async function GET(request: Request) {
@@ -27,9 +27,9 @@ export async function POST(request: Request) {
 
     const result = await createRecord(table, body);
 
-    return NextResponse.json({ result }, { status: 201 });
+    return Response.json({ result }, { status: 201 });
   } catch (error: any) {
     console.log({ error: error.message });
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return Response.json({ error: error.message }, { status: 500 });
   }
 }

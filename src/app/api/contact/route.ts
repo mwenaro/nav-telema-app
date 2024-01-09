@@ -1,13 +1,13 @@
 import { sendTestEmail } from "@/libs/nodemailer/gmail";
 import { getSearchParams } from "@/utils/key_functions";
-import { NextResponse } from "next/server";
+
 
 export async function GET(request: Request) {
   const vendor = getSearchParams(request.url);
   const data = await request.json();
 
   try {
-    return new NextResponse(JSON.stringify(data), {
+    return new Response(JSON.stringify(data), {
       status: 200,
       statusText: "OK",
     });
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
 
   try {
     let { email, name } = body;
-    // return NextResponse.json(body);
+    // return Response.json(body);
     const htmlBody = `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
 <h2>Thank You for Contacting Us</h2>
 

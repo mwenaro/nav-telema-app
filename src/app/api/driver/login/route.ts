@@ -1,7 +1,7 @@
 import { pwdConfirm } from "@/libs/bcrypt/passord";
 import { dbCon } from "@/libs/mongoose/dbCon";
 import { UserModel } from "@/libs/mongoose/models";
-import { NextResponse } from "next/server";
+
 const table = "Users";
 
 export async function POST(request: Request) {
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     });
 
     if (checkActivation.length > 0)
-      return new NextResponse(
+      return new Response(
         JSON.stringify({
           success: false,
           activationError: true,
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     });
 
     if (!users)
-      return new NextResponse(JSON.stringify({ error: "User not found" }), {
+      return new Response(JSON.stringify({ error: "User not found" }), {
         status: 404,
       });
 
@@ -38,16 +38,16 @@ export async function POST(request: Request) {
       if (pwdConfirm(password, u.password)) user = u;
     });
     if (!user)
-      return new NextResponse(
+      return new Response(
         JSON.stringify({ error: "Invalid Login credentials" }),
         { status: 401 }
       );
 
-    return new NextResponse(JSON.stringify(user), { status: 201 });
+    return new Response(JSON.stringify(user), { status: 201 });
     // redirect(`/${user?.vendor}/dashboard`);
   } catch (error: any) {
     console.log({ error: error.message });
-    return new NextResponse(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: {
         "Content-Type": "application/json",

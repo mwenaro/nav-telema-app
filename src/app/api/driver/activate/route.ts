@@ -7,7 +7,7 @@ import {
 } from "@/libs/mongoose/userActivation";
 import { generateUniqueToken } from "@/libs/uniqueKey";
 import { handlesendConfirmationEmail } from "@/utils/emails/ConfirmationEmail";
-import { NextResponse } from "next/server";
+
 
 export async function POST(request: Request) {
   try {
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
         let user = await UserModel.findOne({ email });
         if (!user)
-          return new NextResponse(
+          return new Response(
             JSON.stringify({ sucees: false, message: "An error has ocured!" })
           );
 
@@ -35,19 +35,19 @@ export async function POST(request: Request) {
           activationToken
         );
         
-        return new NextResponse(
+        return new Response(
           JSON.stringify({ success: false, emailStatus })
         );
       }
 
       await markUserActivationRecordAsUsed(email, token);
-      return new NextResponse(
+      return new Response(
         JSON.stringify({ success: true, activationRecord })
       );
     } catch (error) {}
   } catch (error: any) {
     console.log({ error: error.message });
-    return new NextResponse(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
     });
   }

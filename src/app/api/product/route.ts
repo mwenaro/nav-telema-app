@@ -5,7 +5,7 @@ import {
 } from "@/libs/mongoose/mongoseCrud";
 import { getSearchParams } from "@/utils/key_functions";
 import { moveFilesToUpload } from "@/utils/upload";
-import { NextResponse } from "next/server";
+
 const table = "products";
 
 export async function GET(request: Request) {
@@ -37,12 +37,12 @@ export async function POST(request: Request) {
     const result = await createRecord(table, body);
     await moveFilesToUpload(body.img);
     
-    return new NextResponse(JSON.stringify({ success: true, result }), {
+    return new Response(JSON.stringify({ success: true, result }), {
       status: 201,
     });
   } catch (error: any) {
     console.log({ error: error.message });
-    return new NextResponse(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
     });
   }

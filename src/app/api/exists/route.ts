@@ -1,6 +1,6 @@
 import { checkIfExists } from "@/libs/mongoose/mongoseCrud";
 import { getSearchParams } from "@/utils/key_functions";
-import { NextResponse } from "next/server";
+
 
 // c9XddCqLzuNiDNDQ
 
@@ -10,13 +10,13 @@ export async function POST(request: Request) {
   try {
     let exists = await checkIfExists(table, field);
     if (!exists)
-      return new NextResponse(JSON.stringify({ success: false }), {
+      return new Response(JSON.stringify({ success: false }), {
         status: 200,
       });
 
-    return new NextResponse(JSON.stringify({ success: true }), { status: 200 });
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error: any) {
     // console.log({ error: error.message });
-    return new NextResponse(JSON.stringify({ sucess: false }), { status: 500 });
+    return new Response(JSON.stringify({ sucess: false }), { status: 500 });
   }
 }
